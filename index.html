@@ -82,6 +82,7 @@
             <h2>Komentar</h2>
             <textarea id="pesanUcapan" placeholder="Tulis ucapan untuk mempelai..."></textarea>
             <button onclick="kirimUcapan()">Kirim Ucapan</button>
+            <p id="statusTeg"></p>
             <ul id="daftarUcapan"></ul>
         </section>
 <section id="poseng" style="display: none;">
@@ -193,10 +194,14 @@
         }
 
         function kirimUcapan() {
+            
             let pesan = document.getElementById('pesanUcapan').value;
+            if (pesan === ""){
+            document.getElementById('statusTeg').innerHTML = "isi pesan...";
+            } else {
             db.ref("ucapan").push({ pesan: pesan });
             document.getElementById('pesanUcapan').value = "";
-            window.open("https://wa.me/+6285162800407?text="+ pesanUcapan);
+            window.open("https://wa.me/+6285162800407?text="+ pesan);
         }
 
         function shareWA() {
