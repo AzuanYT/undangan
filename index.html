@@ -24,8 +24,11 @@
             <h2>Masukkan Nama Anda</h2>
             <input type="text" id="namaInput" placeholder="Masukkan Nama Anda">
             <button id="btnCekNama" onclick="cekNama()">Cek</button>
+            
         </section>
-
+        <section id="kontoll" style="display: block;">
+<p id="kontol"></p>
+        </section>
         <section id="kode-tamu" style="display: none;">
             <p id="kodeTamu">Kode Undangan Anda: ******</p>
             <button id="lihatKodeBtn" onclick="tampilkanKode()">Lihat Kode</button>
@@ -90,7 +93,7 @@
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
             document.getElementById('lanjut').style.display = 'none';
-            document.getElementById('kode-tamu').style.display = 'block';
+            document.getElementById('kontoll').style.display = 'block';
         }
 
         function cekNama() {
@@ -102,14 +105,15 @@
                 }
                 if (snapshot.exists()) {
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
-                    document.getElementById('kode-tamu').style.display = 'none'; // Tampilkan kode
+                    document.getElementById('kode-tamu').style.display = 'none'; 
+                    document.getElementById('kontoll').style.display = 'none'; // Tampilkan kode
                     document.getElementById('konfirmasi-hadir').style.display = 'block';               
                     document.getElementById('lanjut').style.display = 'none';
 
                     // Simpan kode undangan ke atribut dataset
                     document.getElementById('kodeTamu').dataset.kodeAsli = snapshot.val().kode;
                 } else {
-                    document.getElementById('kodeTamu').innerHTML = "Anda tidak terdaftar dalam undangan.";
+                    document.getElementById('kontoll').innerHTML = "Anda tidak terdaftar dalam undangan.";
                 }
             });
         }
