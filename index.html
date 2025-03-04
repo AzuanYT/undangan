@@ -195,15 +195,56 @@
         }
 
         function kirimUcapan() {
-    let pesan = document.getElementById('pesanUcapan').value.trim();
+    let pesanElement = document.getElementById('pesanUcapan');
+    let pesan = pesanElement.value.trim();
+    let waktuPengiriman = new Date().toLocaleString();
+
     if (pesan !== "") {
-        db.ref("ucapan").push({ nama: namaPengguna, pesan: pesan });
-        document.getElementById('pesanUcapan').value = "";
-        window.open("https://wa.me/+6285162800407?text=" + encodeURIComponent(namaPengguna + ": " + pesan));
+        // Validasi panjang pesan
+        if (pesan.length > 200) {
+            document.getElementById('statusTlg').innerHTML = "Pesan terlalu panjang (maks 200 karakter)";
+            return;
+        }
+
+        // Simpan ucapan ke database dengan timestamp
+        let ucapanBaru = db.ref("ucapan").push({
+            nama: namaPengguna, 
+            pesan: pesan,
+            waktu: waktuPengiriman
+        });
+
+        // Tambahkan ucapan ke daftar tampilan secara real-time
+        ucapanBaru.then(() => {
+            // Reset input
+            pesanElement.value = "";
+            
+            // Kirim pesan via WhatsApp
+            window.open("https://wa.me/+6285162800407?text=" + 
+                encodeURIComponent(`${namaPengguna}: ${pesan}`));
+        });
     } else {
         document.getElementById('statusTlg').innerHTML = "Pesan tidak boleh kosong...";
     }
 }
+
+// Tambahkan listener untuk menampilkan ucapan secara real-time
+function muatUcapan() {
+    const daftarUcapan = document.getElementById('daftarUcapan');
+    
+    db.ref("ucapan").on('child_added', (snapshot) => {
+        const ucapan = snapshot.val();
+        const itemUcapan = document.createElement('li');
+        itemUcapan.innerHTML = `
+            <strong>${ucapan.nama}</strong>
+            <p>${ucapan.pesan}</p>
+            <small>${ucapan.waktu}</small>
+        `;
+        daftarUcapan.prepend(itemUcapan);
+    });
+}
+
+// Panggil fungsi muat ucapan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', muatUcapan);
 
 function shareWA() {
     window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[azuanyt.github.io/undangan]");
