@@ -232,15 +232,22 @@ function muatUcapan() {
     const daftarUcapan = document.getElementById('daftarUcapan');
     
     db.ref("ucapan").on('child_added', (snapshot) => {
-        const ucapan = snapshot.val();
-        const itemUcapan = document.createElement('li');
-        itemUcapan.innerHTML = `
-            <strong>${ucapan.nama}</strong>
-            <p>${ucapan.pesan}</p>
-            <small>${ucapan.waktu}</small>
-        `;
-        daftarUcapan.prepend(itemUcapan);
-    });
+    const ucapan = snapshot.val();
+    const itemUcapan = document.createElement('li');
+    
+    // Format tanggal
+    const tanggal = ucapan.waktu ? 
+        new Date(ucapan.waktu).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        }) : 
+        'baru saja';
+
+    itemUcapan.innerHTML = `${ucapan.nama}: ${ucapan.pesan} (${tanggal})`;
+    
+    daftarUcapan.prepend(itemUcapan);
+});
 }
 
 // Panggil fungsi muat ucapan saat halaman dimuat
