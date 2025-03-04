@@ -1,4 +1,13 @@
 // Konfigurasi Firebase
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+  
+
+  
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyDR6xHGGyMBp2SHh2pBEM_UZ3fhCfMXn7U",
     authDomain: "juamey.firebaseapp.com",
@@ -10,6 +19,7 @@ const firebaseConfig = {
 };
 
 
+  set(ref(db, 'test'), { message: "firebase terhubung!" });
 
 // Inisialisasi Firebase
 firebase.initializeApp(firebaseConfig);
