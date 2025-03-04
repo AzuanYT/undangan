@@ -12,25 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout repository
     - uses: actions/checkout@v4
-
-    # Set up Git configuration
-    - name: Set up Git configuration
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "github-actions@users.noreply.github.com"
-
-    # Build the site using Jekyll Docker container
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
-
-    # Commit and push changes to the repository
-    - name: Commit and push changes
-      run: |
-        git add .
-        git commit -m "Update site"
-        git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
