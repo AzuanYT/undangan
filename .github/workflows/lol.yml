@@ -6,14 +6,18 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public  # Ganti dengan direktori output Anda, misalnya './' jika di root
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build the site and deploy
+      run: |
+        # Build your site here if needed, for example, using Jekyll, Hugo, etc.
+        # Then deploy to GitHub Pages
+        git remote add origin https://github.com/${{ github.repository }}.git
+        git add .
+        git commit -m "Deploy update"
+        git push origin main
