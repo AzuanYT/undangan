@@ -23,16 +23,19 @@
         <section id="cek-nama" style="display: none;">
             <h2>Masukkan Nama Anda</h2>
             <input type="text" id="namaInput" placeholder="Masukkan Nama Anda">
-            <button onclick="cekNama()">Cek</button>
+            <button id="btnCekNama" onclick="cekNama()">Cek</button>
+        </section>
+
+        <section id="kode-tamu" style="display: none;">
             <p id="kodeTamu">Kode Undangan Anda: ******</p>
-            <button id="lihatKodeBtn" onclick="tampilkanKode()" style="display: none;">Lihat Kode</button>
+            <button id="lihatKodeBtn" onclick="tampilkanKode()">Lihat Kode</button>
             <p id="peringatanKode" class="warning" style="display: none;">⚠️ Jangan bagikan kode ini kepada siapa pun!</p>
         </section>
 
         <section id="konfirmasi-hadir" style="display: none;">
             <h2>Konfirmasi Kehadiran</h2>
             <input type="text" id="kodeInput" placeholder="Masukkan Kode Undangan">
-            <button onclick="konfirmasiHadir()">Konfirmasi</button>
+            <button id="btnKonfirmasi" onclick="konfirmasiHadir()">Konfirmasi</button>
             <p id="statusTeks"></p>
         </section>
 
@@ -63,7 +66,7 @@
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
     </div>
 
-    <!-- Import Firebase SDK versi 7.20 -->
+    <!-- Import Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
 
@@ -92,17 +95,14 @@
             let nama = document.getElementById('namaInput').value.toLowerCase();
             db.ref("undangan/" + nama).once('value', (snapshot) => {
                 if (snapshot.exists()) {
-                    document.getElementById('kodeTamu').innerHTML = "Kode Undangan Anda: ******";
-                    document.getElementById('lihatKodeBtn').style.display = 'block';
-                    document.getElementById('peringatanKode').style.display = 'none';
+                    document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
+                    document.getElementById('kode-tamu').style.display = 'block'; // Tampilkan kode
                     document.getElementById('konfirmasi-hadir').style.display = 'block';
 
                     // Simpan kode undangan ke atribut dataset
                     document.getElementById('kodeTamu').dataset.kodeAsli = snapshot.val().kode;
                 } else {
                     document.getElementById('kodeTamu').innerHTML = "Anda tidak terdaftar dalam undangan.";
-                    document.getElementById('lihatKodeBtn').style.display = 'none';
-                    document.getElementById('peringatanKode').style.display = 'none';
                 }
             });
         }
@@ -121,8 +121,10 @@
                     snapshot.forEach((child) => {
                         child.ref.update({ hadir: true });
                     });
+
+                    document.getElementById('konfirmasi-hadir').style.display = 'none'; // Sembunyikan input kode
                     document.getElementById('statusTeks').innerHTML = "✅ Selamat, Anda sudah hadir dalam acara.";
-                    document.getElementById('navigasi').style.display = 'block';
+                    document.getElementById('navigasi').style.display = 'block'; // Tampilkan navigasi
                 } else {
                     document.getElementById('statusTeks').innerHTML = "❌ Kode salah, coba lagi.";
                 }
@@ -158,4 +160,4 @@
         }
     </script>
 </body>
-    </html>
+</html>
