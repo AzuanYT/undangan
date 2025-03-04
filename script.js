@@ -1,14 +1,15 @@
 // Konfigurasi Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyC05KNqTZ...",
+    apiKey: "AIzaSyDR6xHGGyMBp2SHh2pBEM_UZ3fhCfMXn7U",
     authDomain: "juamey.firebaseapp.com",
     databaseURL: "https://juamey-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "juamey",
-    storageBucket: "juamey.appspot.com",
+    storageBucket: "juamey.firebasestorage.app",
     messagingSenderId: "974589432788",
-    appId: "1:974589432788:web:05eb1d690295e912cc3c41",
-    measurementId: "G-F6DTZSLT23"
+    appId: "1:974589432788:android:044c0032abd503c4cc3c41"
 };
+
+
 
 // Inisialisasi Firebase
 firebase.initializeApp(firebaseConfig);
