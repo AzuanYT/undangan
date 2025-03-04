@@ -15,65 +15,61 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// Cek Nama
+function nextStep() {
+    document.getElementById('cek-nama').style.display = 'block';
+}
+
 function cekNama() {
-    let namaInput = document.getElementById("namaInput").value.trim().toLowerCase();
-    let kodeTamu = document.getElementById("kodeTamu");
-    let konfirmasiSection = document.getElementById("konfirmasi-hadir");
-
-    db.ref("undangan").once("value", (snapshot) => {
-        let data = snapshot.val();
-        let found = false;
-
-        Object.keys(data).forEach((key) => {
-            if (key.toLowerCase() === namaInput) {
-                found = true;
-                kodeTamu.innerText = `Kode Undangan: ${data[key].kode}`;
-                konfirmasiSection.style.display = "block";
-                document.getElementById("cek-undangan").style.display = "none";
-                document.getElementById("konfirmasiBtn").setAttribute("data-nama", key);
-            }
-        });
-
-        if (!found) {
-            alert("Nama tidak ditemukan!");
+    let nama = document.getElementById('namaInput').value.toLowerCase();
+    db.ref("undangan/" + nama).once('value', (snapshot) => {
+        if (snapshot.exists()) {
+            document.getElementById('kodeTamu').innerHTML = "Kode Undangan Anda: " + snapshot.val().kode;
+            document.getElementById('konfirmasi-hadir').style.display = 'block';
+        } else {
+            document.getElementById('kodeTamu').innerHTML = "Anda tidak terdaftar dalam undangan.";
         }
     });
 }
 
-// Konfirmasi Kehadiran
 function konfirmasiHadir() {
-    let namaTamu = document.getElementById("konfirmasiBtn").getAttribute("data-nama");
-    let kodeInput = document.getElementById("kodeInput").value.trim();
-    let kodeTamu = document.getElementById("kodeTamu").innerText.split(": ")[1];
-
-    if (kodeInput === kodeTamu) {
-        db.ref(`undangan/${namaTamu}/hadir`).set(true)
-            .then(() => {
-                alert("Konfirmasi berhasil! Selamat datang.");
-                document.getElementById("konfirmasiBtn").disabled = true;
-            })
-            .catch((error) => console.error(error));
-    } else {
-        alert("Kode salah! Coba lagi.");
-    }
+    let kode = document.getElementById('kodeInput').value;
+    db.ref("undangan").orderByChild("kode").equalTo(kode).once('value', (snapshot) => {
+        if (snapshot.exists()) {
+            snapshot.forEach((child) => {
+                child.ref.update({ hadir: true });
+            });
+            document.getElementById('statusTeks').innerHTML = "Selamat, Anda sudah hadir dalam acara.";
+            document.getElementById('navigasi').style.display = 'block';
+        } else {
+            document.getElementById('statusTeks').innerHTML = "Kode salah, coba lagi.";
+        }
+    });
 }
 
-// Kirim Ucapan
+function tampilkanLokasi() {
+    document.getElementById('lokasi').style.display = 'block';
+    document.getElementById('jadwal').style.display = 'none';
+    document.getElementById('komentar').style.display = 'none';
+}
+
+function tampilkanJadwal() {
+    document.getElementById('lokasi').style.display = 'none';
+    document.getElementById('jadwal').style.display = 'block';
+    document.getElementById('komentar').style.display = 'none';
+}
+
+function tampilkanKomentar() {
+    document.getElementById('lokasi').style.display = 'none';
+    document.getElementById('jadwal').style.display = 'none';
+    document.getElementById('komentar').style.display = 'block';
+}
+
 function kirimUcapan() {
-    let ucapan = document.getElementById("pesanUcapan").value.trim();
-    if (ucapan !== "") {
-        let daftarUcapan = document.getElementById("daftarUcapan");
-        let li = document.createElement("li");
-        li.innerText = ucapan;
-        daftarUcapan.appendChild(li);
-        document.getElementById("pesanUcapan").value = "";
-    }
+    let pesan = document.getElementById('pesanUcapan').value;
+    db.ref("ucapan").push({ pesan: pesan });
+    document.getElementById('pesanUcapan').value = "";
 }
 
-// Bagikan via WhatsApp
 function shareWA() {
-    let url = encodeURIComponent(window.location.href);
-    let message = encodeURIComponent("Saya diundang ke acara pernikahan ini! Yuk cek: ");
-    window.open(`https://api.whatsapp.com/send?text=${message} ${url}`, "_blank");
-          }
+    window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[link-website]");
+}
