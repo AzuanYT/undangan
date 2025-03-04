@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Undangan Pernikahan</h1>
+            <p>Nama Mempelai | Tanggal | Lokasi</p>
+        </header>
+        
+        <section id="cek-undangan">
+            <h2>Cek Kode Undangan</h2>
+            <input type="text" id="namaInput" placeholder="Masukkan Nama Anda">
+            <button onclick="cekNama()">Cek</button>
+            <p id="kodeTamu"></p>
+        </section>
+
+        <section id="konfirmasi-hadir" style="display: none;">
+            <h2>Konfirmasi Kehadiran</h2>
+            <input type="text" id="kodeInput" placeholder="Masukkan Kode Undangan">
+            <button onclick="konfirmasiHadir()">Konfirmasi</button>
+            <p id="statusTeks"></p>
+        </section>
+
+        <section id="galeri">
+            <h2>Galeri & Ucapan</h2>
+            <div class="galeri">
+                <img src="assets/wedding1.jpg" alt="Foto 1">
+                <img src="assets/wedding2.jpg" alt="Foto 2">
+            </div>
+            <textarea id="pesanUcapan" placeholder="Tulis ucapan untuk mempelai..."></textarea>
+            <button onclick="kirimUcapan()">Kirim Ucapan</button>
+            <ul id="daftarUcapan"></ul>
+        </section>
+
+        <section id="lokasi">
+            <h2>Lokasi Acara</h2>
+            <iframe src="https://www.google.com/maps/embed?..." width="100%" height="300"></iframe>
+        </section>
+
+        <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+</body>
+                                                          </html>
