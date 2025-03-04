@@ -89,6 +89,7 @@
 
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
+            document.getElementById('lanjut').style.display = 'none';
         }
 
         function cekNama() {
@@ -97,7 +98,8 @@
                 if (snapshot.exists()) {
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
                     document.getElementById('kode-tamu').style.display = 'block'; // Tampilkan kode
-                    document.getElementById('konfirmasi-hadir').style.display = 'block';
+                    document.getElementById('konfirmasi-hadir').style.display = 'block';               
+                    document.getElementById('lanjut').style.display = 'none';
 
                     // Simpan kode undangan ke atribut dataset
                     document.getElementById('kodeTamu').dataset.kodeAsli = snapshot.val().kode;
@@ -124,7 +126,11 @@
 
                     document.getElementById('konfirmasi-hadir').style.display = 'none'; // Sembunyikan input kode
                     document.getElementById('statusTeks').innerHTML = "✅ Selamat, Anda sudah hadir dalam acara.";
-                    document.getElementById('navigasi').style.display = 'block'; // Tampilkan navigasi
+                    document.getElementById('navigasi').style.display = 'block';
+                    document.getElementById('kode-tamu').style.display = 'none';
+                    document.getElementById('peringatanKode').style.display = 'none';
+                    
+                    // Tampilkan navigasi
                 } else {
                     document.getElementById('statusTeks').innerHTML = "❌ Kode salah, coba lagi.";
                 }
