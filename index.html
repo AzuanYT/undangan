@@ -17,7 +17,7 @@
             <h1>Undangan Pernikahan</h1>
             <p>Ajuan Apriansyah & Davina Rosinta</p>
             <p>4 Maret 2025, Pukul 12.00</p>
-            <button onclick="nextStep()">Lanjut</button>
+            <button id="lanjut" onclick="nextStep()">Lanjut</button>
         </header>
 
         <section id="cek-nama" style="display: none;">
@@ -90,14 +90,19 @@
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
             document.getElementById('lanjut').style.display = 'none';
+            document.getElementById('kode-tamu').style.display = 'block';
         }
 
         function cekNama() {
             let nama = document.getElementById('namaInput').value.toLowerCase();
             db.ref("undangan/" + nama).once('value', (snapshot) => {
+                if (nama === "") {
+        document.getElementById('kodeTamu').innerHTML = "Masukan nama terlebih dahulu.";
+        return; // Stop eksekusi supaya tidak lanjut
+                }
                 if (snapshot.exists()) {
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
-                    document.getElementById('kode-tamu').style.display = 'block'; // Tampilkan kode
+                    document.getElementById('kode-tamu').style.display = 'none'; // Tampilkan kode
                     document.getElementById('konfirmasi-hadir').style.display = 'block';               
                     document.getElementById('lanjut').style.display = 'none';
 
