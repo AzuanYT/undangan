@@ -56,8 +56,9 @@
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
+    <!-- Import Firebase SDK versi 7.20 -->
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
 
     <script>
         // Firebase configuration
@@ -70,12 +71,10 @@
             messagingSenderId: "974589432788",
             appId: "1:974589432788:web:05eb1d690295e912cc3c41",
             measurementId: "G-F6DTZSLT23"
-  };
-            
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
         function nextStep() {
