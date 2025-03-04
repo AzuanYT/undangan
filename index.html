@@ -82,7 +82,7 @@
 
         function cekNama() {
             let nama = document.getElementById('namaInput').value.toLowerCase();
-            db.ref("undangan/" + nama).once('value', (snapshot) => {
+            db.ref("undangan" + nama).once('value', (snapshot) => {
                 if (snapshot.exists()) {
                     document.getElementById('kodeTamu').innerHTML = "Kode Undangan Anda: " + snapshot.val().kode;
                     document.getElementById('konfirmasi-hadir').style.display = 'block';
