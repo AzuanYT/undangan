@@ -82,11 +82,13 @@
             <h2>Komentar</h2>
             <textarea id="pesanUcapan" placeholder="Tulis ucapan untuk mempelai..."></textarea>
             <button onclick="kirimUcapan()">Kirim Ucapan</button>
-            <p id="statusTeg"></p>
+            
             <ul id="daftarUcapan"></ul>
         </section>
 <section id="poseng" style="display: none;">
+        <p id="statusTlg"></p>
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
+        
 </section>
     </div>
 
@@ -204,7 +206,7 @@
                 
             } else {
             
-            document.getElementById('statusTeg').innerHTML = "pesan tidak boleh kosong...";
+            document.getElementById('statusTlg').innerHTML = "pesan tidak boleh kosong...";
         }
 
         function shareWA() {
