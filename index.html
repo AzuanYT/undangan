@@ -52,9 +52,12 @@
             <h2>Konfirmasi Kehadiran</h2>
             <input type="text" id="kodeInput" placeholder="Masukkan Kode Undangan">
             <button id="btnKonfirmasi" onclick="konfirmasiHadir()">Konfirmasi</button>
-            <p id="statusTeks"></p>
+            <p id="statusTe"></p>
         </section>
-
+           <section id="statusTt" style="display: none;">
+               <p>-------------</p>
+<p id="statusTeks"></p>
+           </section>
         <section id="navigasi" style="display: none;">
             <button onclick="tampilkanLokasi()">Lokasi</button>
             <button onclick="tampilkanJadwal()">Jadwal</button>
@@ -64,7 +67,7 @@
         <section id="lokasi" style="display: none;">
             <h2>Lokasi Acara</h2>
             <p>Jl. Kerang 6 No 14</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.42986086781687!2d112.61470864586884!3d-7.140129986747194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1741085604236!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.42986086781687!2d112.61470864586884!3d-7.140129986747194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1741085604236!5m2!1sid!2sid" width="300" height="110" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
         </section>
 
         <section id="jadwal" style="display: none;">
@@ -149,19 +152,20 @@
                         child.ref.update({ hadir: true });
                     });
 
-                    document.getElementById('konfirmasi-hadir').style.display = 'none'; // Sembunyikan input kode
-                    document.getElementById('statusTeks').innerHTML = "✅ Selamat, Anda sudah hadir dalam acara.";
+                    document.getElementById('konfirmasi-hadir').style.display = 'none'; 
+                    document.getElementById('statusTt').style.display = 'block';// Sembunyikan input kode
+                    document.getElementById('statusTeks').innerHTML = "Selamat, Anda sudah hadir dalam acara.";
                     document.getElementById('navigasi').style.display = 'block';
                     document.getElementById('kode-tamu').style.display = 'none';
                     document.getElementById('peringatanKode').style.display = 'none';
                     document.getElementById('poseng').style.display = 'block';
-                    document.getElementById('jancok').style.display = 'block';
-                    document.getElementById('jancokk').style.display = 'none';
+                    document.getElementById('jancokk').style.display = 'block';
+                    document.getElementById('jancok').style.display = 'none';
                     
                     
                     // Tampilkan navigasi
                 } else {
-                    document.getElementById('statusTeks').innerHTML = "kode salah, coba lagi.";
+                    document.getElementById('statusTe').innerHTML = "kode salah, coba lagi.";
                 }
             });
         }
