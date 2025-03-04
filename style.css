@@ -1,0 +1,33 @@
+body {
+    font-family: 'Georgia', serif;
+    background-image: url('https://source.unsplash.com/1600x900/?wedding');
+    background-size: cover;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+input, button, textarea {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+}
+button {
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.galeri img {
+    width: 100px;
+    margin: 5px;
+    border-radius: 10px;
+}
