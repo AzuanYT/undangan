@@ -100,7 +100,7 @@
             let nama = document.getElementById('namaInput').value.toLowerCase();
             db.ref("undangan/" + nama).once('value', (snapshot) => {
                 if (nama === "") {
-        document.getElementById('kodeTamu').innerHTML = "Masukan nama terlebih dahulu.";
+        document.getElementById('kontoll').innerHTML = "Masukan nama terlebih dahulu.";
         return; // Stop eksekusi supaya tidak lanjut
                 }
                 if (snapshot.exists()) {
