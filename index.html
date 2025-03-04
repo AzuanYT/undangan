@@ -16,15 +16,18 @@
        <div class="container">
       
         <header>
+            
             <section id="jancokk" style="display: block;">
             <h1>Undangan Pernikahan</h1>
             <p></p>
+            </section>
+                <section id="jancok" style="display: block;">
             <p>Ajuan Apriansyah</p>
             <p>and</p>
             <p>Davina Rosinta</p>
             <p></p>
-            </section>
-            <section id="jancok" style="display: block;">
+            
+            
             <p1>4 Maret 2025, Pukul 12.00</p1>
             <p></p>
             
@@ -45,7 +48,7 @@
         <section id="kode-tamu" style="display: none;">
             <p id="kodeTamu">Kode Undangan Anda: ******</p>
             <button id="lihatKodeBtn" onclick="tampilkanKode()">Lihat Kode</button>
-            <p id="peringatanKode" class="warning" style="display: none;">⚠️ Jangan bagikan kode ini kepada siapa pun!</p>
+            <p id="peringatanKode" class="warning" style="display: none;">⚠️ DAFTAR PADA SAAT ACARA! ⚠️</p>
         </section>
 
         <section id="konfirmasi-hadir" style="display: none;">
@@ -55,7 +58,7 @@
             <p id="statusTe"></p>
         </section>
            <section id="statusTt" style="display: none;">
-               <p>-------------</p>
+               
 <p id="statusTeks"></p>
            </section>
         <section id="navigasi" style="display: none;">
@@ -116,15 +119,21 @@
         }
 
         function cekNama() {
-            let nama = document.getElementById('namaInput').value.toLowerCase();
+            let nama = document.getElementById('namaInput').value.trim().toLowerCase();
             db.ref("undangan/" + nama).once('value', (snapshot) => {
                 if (nama === "") {
         document.getElementById('kontoll').innerHTML = "Masukan nama terlebih dahulu.";
         return; // Stop eksekusi supaya tidak lanjut
                 }
-                if (snapshot.exists()) {
+                db.ref("undangan").once('value', (snapshot) => {
+        let found = false;
+        snapshot.forEach((child) => {
+            let namaFirebase = child.key.toLowerCase(); // Pastikan perbandingan case-insensitive
+            if (nama === namaFirebase) {
+                found = true;
+                
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
-                    document.getElementById('kode-tamu').style.display = 'none'; 
+                    document.getElementById('kode-tamu').style.display = 'block'; 
                     document.getElementById('kontoll').style.display = 'none'; // Tampilkan kode
                     document.getElementById('konfirmasi-hadir').style.display = 'block';               
                     document.getElementById('lanjut').style.display = 'none';
@@ -154,7 +163,7 @@
 
                     document.getElementById('konfirmasi-hadir').style.display = 'none'; 
                     document.getElementById('statusTt').style.display = 'block';// Sembunyikan input kode
-                    document.getElementById('statusTeks').innerHTML = "Selamat, Anda sudah hadir dalam acara.";
+                    document.getElementById('statusTeks').innerHTML = "anda telah hadir dalam acara.";
                     document.getElementById('navigasi').style.display = 'block';
                     document.getElementById('kode-tamu').style.display = 'none';
                     document.getElementById('peringatanKode').style.display = 'none';
