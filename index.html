@@ -12,13 +12,16 @@
 </head>
 <body>
 
-    <div class="container">
+   
+       <div class="container">
+      <section id="jancok" style="display: block:">
         <header>
             <h1>Undangan Pernikahan</h1>
             <p>Ajuan Apriansyah & Davina Rosinta</p>
             <p>4 Maret 2025, Pukul 12.00</p>
             <button id="lanjut" onclick="nextStep()">Lanjut</button>
         </header>
+       </section>
 
         <section id="cek-nama" style="display: none;">
             <h2>Masukkan Nama Anda</h2>
@@ -93,6 +96,7 @@
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
             document.getElementById('lanjut').style.display = 'none';
+            document.getElementById('jancok').style.display = 'none';
             document.getElementById('kontoll').style.display = 'block';
         }
 
@@ -141,7 +145,7 @@
                     
                     // Tampilkan navigasi
                 } else {
-                    document.getElementById('statusTeks').innerHTML = "❌ Kode salah, coba lagi.";
+                    document.getElementById('statusTeks').innerHTML = "kode salah, coba lagi.";
                 }
             });
         }
@@ -168,10 +172,11 @@
             let pesan = document.getElementById('pesanUcapan').value;
             db.ref("ucapan").push({ pesan: pesan });
             document.getElementById('pesanUcapan').value = "";
+            window.open("https://wa.me/+6285162800407?text="+ pesanUcapan);
         }
 
         function shareWA() {
-            window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[link-website]");
+            window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[azuanyt.github.io/undangan]");
         }
     </script>
 </body>
