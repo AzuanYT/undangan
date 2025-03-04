@@ -2,7 +2,7 @@
 const firebaseConfig = {
     apiKey: "AIzaSyDR6xHGGyMBp2SHh2pBEM_UZ3fhCfMXn7U",
     authDomain: "juamey.firebaseapp.com",
-    databaseURL: "https://juamey-default-rtdb.asia-southeast1.firebasedatabase.app",
+    databaseURL: "https://juamey-default-rtdb.asia-southeast1.firebasedatabase.app/undangan",
     projectId: "juamey",
     storageBucket: "juamey.firebasestorage.app",
     messagingSenderId: "974589432788",
