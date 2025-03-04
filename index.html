@@ -82,13 +82,11 @@
             <h2>Komentar</h2>
             <textarea id="pesanUcapan" placeholder="Tulis ucapan untuk mempelai..."></textarea>
             <button onclick="kirimUcapan()">Kirim Ucapan</button>
-            
+            <p id="statusTeg"></p>
             <ul id="daftarUcapan"></ul>
         </section>
 <section id="poseng" style="display: none;">
-        <p id="statusTlg"></p>
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
-        
 </section>
     </div>
 
@@ -112,7 +110,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
-
+        let namaPengguna ="";
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
             document.getElementById('lanjut').style.display = 'none';
@@ -121,7 +119,7 @@
             document.getElementById('kontoll').style.display = 'block';
         }
         
-       let namaPengguna ="";
+       
         function cekNama() {
             let nama = document.getElementById('namaInput').value.trim().toLowerCase().replace(/ /g, "_");
             db.ref("undangan/" + nama).once('value', (snapshot) => {
@@ -197,21 +195,21 @@
         }
 
         function kirimUcapan() {
-            
-            let pesan = document.getElementById('pesanUcapan').value.trim();
-            if (pesan !== ""){
-            db.ref("ucapan").push({ nama: namaPengguna, pesan: pesan });
-            document.getElementById('pesanUcapan').value = "";
-            window.open("https://wa.me/+6285162800407?text=" + encodeURIComponent(+ namaPenggun ": " + pesan));
-                
-            } else {
-            
-            document.getElementById('statusTlg').innerHTML = "pesan tidak boleh kosong...";
-        }
+    let pesan = document.getElementById('pesanUcapan').value.trim();
+    if (pesan !== "") {
+        db.ref("ucapan").push({ nama: namaPengguna, pesan: pesan });
+        document.getElementById('pesanUcapan').value = "";
+        window.open("https://wa.me/+6285162800407?text=" + encodeURIComponent(namaPengguna + ": " + pesan));
+    } else {
+        document.getElementById('statusTlg').innerHTML = "Pesan tidak boleh kosong...";
+    }
+}
 
-        function shareWA() {
-            window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[azuanyt.github.io/undangan]");
-        }
+function shareWA() {
+    window.open("https://wa.me/?text=Undangan%20pernikahan%20Ajuan%20Apriansyah%20dan%20Davina%20Rosinta.%20Cek%20di:%20[azuanyt.github.io/undangan]");
+}
+
+        
     </script>
 </body>
 </html>
