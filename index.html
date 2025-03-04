@@ -22,9 +22,9 @@
             <p></p>
             </section>
                 <section id="jancok" style="display: block;">
-            <p>Ajuan Apriansyah</p>
+            <h3>Ajuan Apriansyah</h3>
             <p>and</p>
-            <p>Davina Rosinta</p>
+            <h3>Davina Rosinta</h3>
             <p></p>
             
             
@@ -70,7 +70,7 @@
         <section id="lokasi" style="display: none;">
             <h2>Lokasi Acara</h2>
             <p>Jl. Kerang 6 No 14</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.42986086781687!2d112.61470864586884!3d-7.140129986747194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1741085604236!5m2!1sid!2sid" width="300" height="110" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.42986086781687!2d112.61470864586884!3d-7.140129986747194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1741085604236!5m2!1sid!2sid" width="400" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>  
         </section>
 
         <section id="jadwal" style="display: none;">
@@ -118,16 +118,17 @@
             document.getElementById('jancokk').style.display = 'none';
             document.getElementById('kontoll').style.display = 'block';
         }
-
+        
+       let namaPengguna ="";
         function cekNama() {
-            let nama = document.getElementById('namaInput').value.trim().toLowerCase();
+            let nama = document.getElementById('namaInput').value.trim().toLowerCase().replace(/ /g, "_");
             db.ref("undangan/" + nama).once('value', (snapshot) => {
                 if (nama === "") {
         document.getElementById('kontoll').innerHTML = "Masukan nama terlebih dahulu.";
         return; // Stop eksekusi supaya tidak lanjut
                 }
                 if (snapshot.exists()){
-                
+                    namaPengguna = nama;
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
                     document.getElementById('kode-tamu').style.display = 'block'; 
                     document.getElementById('kontoll').style.display = 'none'; // Tampilkan kode
@@ -195,13 +196,15 @@
 
         function kirimUcapan() {
             
-            let pesan = document.getElementById('pesanUcapan').value;
-            if (pesan === ""){
-            document.getElementById('statusTeg').innerHTML = "isi pesan...";
-            } else {
-            db.ref("ucapan").push({ pesan: pesan });
+            let pesan = document.getElementById('pesanUcapan').value.trim();
+            if (pesan !== ""){
+            db.ref("ucapan").push({ nama: namaPengguna, pesan: pesan });
             document.getElementById('pesanUcapan').value = "";
-            window.open("https://wa.me/+6285162800407?text="+ pesan);
+            window.open("https://wa.me/+6285162800407?text=" + encodeURIComponent(+ namaPenggun ": " + pesan));
+                
+            } else {
+            
+            document.getElementById('statusTeg').innerHTML = "pesan tidak boleh kosong...";
         }
 
         function shareWA() {
