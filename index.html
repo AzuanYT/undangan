@@ -56,33 +56,32 @@
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
     </div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js"></script>
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyDR6xHGGyMBp2SHh2pBEM_UZ3fhCfMXn7U",
-        authDomain: "juamey.firebaseapp.com",
-        databaseURL: "https://juamey-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "juamey",
-        storageBucket: "juamey.firebasestorage.app",
-        messagingSenderId: "974589432788",
-        appId: "1:974589432788:android:044c0032abd503c4cc3c41"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    
-    // Pastikan menggunakan db sesuai kebutuhan untuk menulis dan membaca data
+    <script>
         // Firebase configuration
-        
+        const firebaseConfig = {
+            apiKey: "AIzaSyDR6xHGGyMBp2SHh2pBEM_UZ3fhCfMXn7U",
+            authDomain: "juamey.firebaseapp.com",
+            databaseURL: "https://juamey-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "juamey",
+            storageBucket: "juamey.firebasestorage.app",
+            messagingSenderId: "974589432788",
+            appId: "1:974589432788:android:044c0032abd503c4cc3c41"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
         function nextStep() {
             document.getElementById('cek-nama').style.display = 'block';
         }
 
         function cekNama() {
             let nama = document.getElementById('namaInput').value.toLowerCase();
-            db.ref("undangan" + nama).once('value', (snapshot) => {
+            db.ref("undangan/" + nama).once('value', (snapshot) => {
                 if (snapshot.exists()) {
                     document.getElementById('kodeTamu').innerHTML = "Kode Undangan Anda: " + snapshot.val().kode;
                     document.getElementById('konfirmasi-hadir').style.display = 'block';
