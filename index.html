@@ -125,12 +125,7 @@
         document.getElementById('kontoll').innerHTML = "Masukan nama terlebih dahulu.";
         return; // Stop eksekusi supaya tidak lanjut
                 }
-                db.ref("undangan").once('value', (snapshot) => {
-        let found = false;
-        snapshot.forEach((child) => {
-            let namaFirebase = child.key.toLowerCase(); // Pastikan perbandingan case-insensitive
-            if (nama === namaFirebase) {
-                found = true;
+                if (snapshot.exists()){
                 
                     document.getElementById('cek-nama').style.display = 'none'; // Sembunyikan input nama
                     document.getElementById('kode-tamu').style.display = 'block'; 
