@@ -17,7 +17,11 @@
       <section id="jancok" style="display: block:">
         <header>
             <h1>Undangan Pernikahan</h1>
-            <p>Ajuan Apriansyah & Davina Rosinta</p>
+            <p></p>
+            <p>Ajuan Apriansyah</p>
+            <p>&</p>
+            <p>Davina Rosinta</p>
+            <p></p>
             <p>4 Maret 2025, Pukul 12.00</p>
             <button id="lanjut" onclick="nextStep()">Lanjut</button>
         </header>
@@ -68,8 +72,9 @@
             <button onclick="kirimUcapan()">Kirim Ucapan</button>
             <ul id="daftarUcapan"></ul>
         </section>
-
+<section id="poseng" style="display: none;">
         <button id="shareWhatsapp" onclick="shareWA()">Bagikan via WhatsApp</button>
+</section>
     </div>
 
     <!-- Import Firebase SDK -->
@@ -142,6 +147,7 @@
                     document.getElementById('navigasi').style.display = 'block';
                     document.getElementById('kode-tamu').style.display = 'none';
                     document.getElementById('peringatanKode').style.display = 'none';
+                    document.getElementById('poseng').style.display = 'block';
                     
                     // Tampilkan navigasi
                 } else {
