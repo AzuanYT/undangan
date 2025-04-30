@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Davina Rosinta - Ajuan Apriansyah</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .envelope {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .envelope:hover {
+            transform: translateY(-10px) rotateY(10deg);
+        }
+        
+        .letter {
+            transform-origin: bottom;
+            transition: all 0.5s ease;
+        }
+        
+        .open-letter {
+            transform: rotateX(180deg);
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .photo-frame {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center p-4">
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="fixed top-4 right-4 z-50">
+        <button id="musicBtn" class="bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+    
+    <div class="max-w-2xl w-full text-center mb-12 fade-in">
+        <h1 class="dancing-font text-5xl md:text-6xl text-pink-600 mb-4">Davina Rosinta</h1>
+        <p class="text-gray-600 text-lg">Sebuah pesan cinta dari <span class="font-bold text-pink-500">Ajuan Apriansyah</span></p>
+    </div>
+    
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-16">
+        <div class="envelope relative w-64 h-40 bg-pink-400 rounded-lg shadow-xl cursor-pointer" id="envelope">
+            <div class="absolute top-0 left-0 w-full h-full bg-pink-500 rounded-lg"></div>
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-pink-300 rounded-t-lg"></div>
+            <div class="letter absolute bottom-0 left-0 w-full h-full bg-white p-4 rounded-b-lg flex items-center justify-center">
+                <span class="dancing-font text-2xl text-pink-600">Buka Suratku</span>
+            </div>
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-pink-400 transform origin-bottom rotate-180 rounded-t-lg"></div>
+        </div>
+        
+        <div class="photo-frame bg-white p-2 rounded-lg shadow-lg">
+            <div class="w-48 h-48 bg-gradient-to-br from-pink-300 to-purple-300 flex items-center justify-center">
+                <i class="fas fa-heart text-white text-6xl"></i>
+            </div>
+            <p class="mt-2 text-gray-700">Foto kita akan ada disini</p>
+        </div>
+    </div>
+    
+    <div id="loveLetter" class="hidden max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg mb-12 transform scale-95">
+        <div class="border-2 border-pink-200 p-6 rounded">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="dancing-font text-3xl text-pink-600">My Dearest Davina,</h2>
+                <span class="text-sm text-gray-500">12 Juli 2023</span>
+            </div>
+            
+            <div class="text-gray-700 text-left space-y-4">
+                <p>Setiap kali aku memikirkanmu, hatiku dipenuhi dengan kebahagiaan yang tak terkatakan. Kamu adalah sinar matahari yang menerangi hari-hariku, bunga yang mekar di taman hatiku.</p>
+                
+                <p>Aku masih ingat pertama kali kita bertemu, bagaimana senyummu bisa langsung mencuri perhatianku. Sejak saat itu, aku tahu ada sesuatu yang istimewa tentang dirimu.</p>
+                
+                <p class="text-center italic text-pink-500">"Dalam lautan manusia, hanya kamu yang bisa membuat hatiku berdebar seperti ini."</p>
+                
+                <p>Davina, terima kasih telah menjadi bagian dari hidupku. Terima kasih untuk tawa, pelukan, dan semua momen indah yang kita bagi bersama. Aku berjanji akan selalu ada untukmu, dalam suka maupun duka.</p>
+                
+                <p>Aku mungkin bukan pria sempurna, tapi aku akan selalu berusaha menjadi yang terbaik untukmu. Karena kamu pantas mendapatkan yang terbaik.</p>
+                
+                <p class="text-center font-bold text-lg text-pink-600">Aku mencintaimu lebih dari kata-kata bisa ungkapkan.</p>
+            </div>
+            
+            <div class="mt-8 flex justify-end">
+                <div class="text-right">
+                    <p class="dancing-font text-2xl text-pink-600">Selamanya milikmu,</p>
+                    <p class="text-xl font-bold">Ajuan Apriansyah</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg mb-12 fade-in">
+        <h2 class="dancing-font text-3xl text-center text-pink-600 mb-6">Kenangan Kita</h2>
+        
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div class="bg-gradient-to-br from-pink-100 to-purple-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-heart text-pink-400 text-3xl"></i>
+            </div>
+            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-music text-blue-400 text-3xl"></i>
+            </div>
+            <div class="bg-gradient-to-br from-yellow-100 to-orange-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-umbrella-beach text-yellow-500 text-3xl"></i>
+            </div>
+            <div class="bg-gradient-to-br from-green-100 to-teal-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-film text-green-500 text-3xl"></i>
+            </div>
+            <div class="bg-gradient-to-br from-purple-100 to-pink-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-hands-holding-heart text-purple-500 text-3xl"></i>
+            </div>
+            <div class="bg-gradient-to-br from-red-100 to-pink-100 h-32 rounded-lg flex items-center justify-center">
+                <i class="fas fa-gift text-red-500 text-3xl"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="max-w-2xl w-full bg-white p-8 rounded-lg shadow-lg fade-in">
+        <h2 class="dancing-font text-3xl text-center text-pink-600 mb-6">Countdown Hari Spesial</h2>
+        
+        <div class="grid grid-cols-4 gap-4 text-center">
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <div class="text-4xl font-bold text-pink-600" id="days">00</div>
+                <div class="text-gray-600">Hari</div>
+            </div>
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <div class="text-4xl font-bold text-pink-600" id="hours">00</div>
+                <div class="text-gray-600">Jam</div>
+            </div>
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <div class="text-4xl font-bold text-pink-600" id="minutes">00</div>
+                <div class="text-gray-600">Menit</div>
+            </div>
+            <div class="bg-pink-100 p-4 rounded-lg">
+                <div class="text-4xl font-bold text-pink-600" id="seconds">00</div>
+                <div class="text-gray-600">Detik</div>
+            </div>
+        </div>
+        
+        <p class="mt-4 text-center text-gray-600">Menuju hari ulang tahun kita berikutnya</p>
+    </div>
+    
+    <div class="fixed bottom-4 right-4">
+        <button id="heartBtn" class="bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition">
+            <i class="fas fa-heart"></i>
+        </button>
+    </div>
+    
+    <script>
+        // Music toggle
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        let isPlaying = false;
+        
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Envelope animation
+        const envelope = document.getElementById('envelope');
+        const loveLetter = document.getElementById('loveLetter');
+        
+        envelope.addEventListener('click', () => {
+            envelope.classList.add('hidden');
+            loveLetter.classList.remove('hidden');
+            loveLetter.classList.add('animate__animated', 'animate__fadeInUp');
+            
+            // Create floating hearts
+            for (let i = 0; i < 20; i++) {
+                createHeart();
+            }
+        });
+        
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '<i class="fas fa-heart text-pink-500 text-2xl"></i>';
+            
+            // Random position
+            const xPos = Math.random() * window.innerWidth;
+            const yPos = Math.random() * window.innerHeight;
+            
+            // Random size
+            const size = Math.random() * 20 + 10;
+            
+            // Random animation duration
+            const duration = Math.random() * 3 + 3;
+            
+            heart.style.left = `${xPos}px`;
+            heart.style.top = `${yPos}px`;
+            heart.style.fontSize = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart after animation
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+        
+        // Heart button
+        const heartBtn = document.getElementById('heartBtn');
+        
+        heartBtn.addEventListener('click', () => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 300);
+            }
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            // Set your anniversary or special date here
+            const nextDate = new Date();
+            nextDate.setMonth(nextDate.getMonth() + 1); // Example: 1 month from now
+            
+            const now = new Date();
+            const diff = nextDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Initial floating hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                createHeart();
+            }, i * 1000);
+        }
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=juansoft/cinta" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
